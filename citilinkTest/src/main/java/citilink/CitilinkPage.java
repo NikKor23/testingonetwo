@@ -1,5 +1,6 @@
 package citilink;
 
+import citilink.interfaces.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CitilinkPage {
+public class CitilinkPage implements Page {
 
     private String mainURL = "https://www.citilink.ru/";
     private String catalogButtonXPath = "//span[contains(., \"Каталог товаров\")]";
@@ -34,12 +35,13 @@ public class CitilinkPage {
         act.moveToElement(element).perform();
     }
 
-    public void videoCardsClick() {
+    public Page videoCardsClick() {
         WebElement element = webDriver.findElement(By.xpath(videoСardsXPath));
         JavascriptExecutor je = (JavascriptExecutor) webDriver;
         je.executeScript("arguments[0].click()",element);
         /*Actions act = new Actions(webDriver);
         act.moveToElement(element).click();*/
+        return this;
     }
 
 }
